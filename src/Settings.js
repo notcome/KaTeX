@@ -15,6 +15,7 @@ export type SettingsOptions = {
     macros?: MacroMap;
     colorIsTextColor?: boolean;
     maxSize?: number;
+    mathMLOnly?: boolean;
 };
 
 /**
@@ -34,6 +35,7 @@ class Settings {
     macros: MacroMap;
     colorIsTextColor: boolean;
     maxSize: number;
+    mathMLOnly: boolean;
 
     constructor(options: SettingsOptions) {
         // allow null options
@@ -44,6 +46,7 @@ class Settings {
         this.macros = options.macros || {};
         this.colorIsTextColor = utils.deflt(options.colorIsTextColor, false);
         this.maxSize = Math.max(0, utils.deflt(options.maxSize, Infinity));
+        this.mathMLOnly = utils.deflt(options.mathMLOnly, false);
     }
 }
 

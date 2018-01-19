@@ -438,6 +438,10 @@ export default function buildMathML(tree, texExpression, options) {
 
     const math = new mathMLTree.MathNode("math", [semantics]);
 
-    // You can't style <math> nodes, so we wrap the node in a span.
-    return buildCommon.makeSpan(["katex-mathml"], [math]);
+    if (options.mathMLOnly) {
+        return math;
+    } else {
+        // You can't style <math> nodes, so we wrap the node in a span.
+        return buildCommon.makeSpan(["katex-mathml"], [math]);
+    }
 }

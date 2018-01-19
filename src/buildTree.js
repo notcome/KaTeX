@@ -12,7 +12,7 @@ import type domTree from "./domTree";
 const optionsFromSettings = function(settings: Settings) {
     return new Options({
         style: (settings.displayMode ? Style.DISPLAY : Style.TEXT),
-        maxSize: settings.maxSize,
+        maxSize: settings.maxSize, mathMLOnly: settings.mathMLOnly,
     });
 };
 
@@ -25,6 +25,11 @@ export const buildTree = function(
     // `buildHTML` sometimes messes with the parse tree (like turning bins ->
     // ords), so we build the MathML version first.
     const mathMLNode = buildMathML(tree, expression, options);
+
+    if (options.mathMLOnly) {
+        return mathMLNode;
+    }
+
     const htmlNode = buildHTML(tree, options);
 
     const katexNode = buildCommon.makeSpan(["katex"], [

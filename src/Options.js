@@ -48,6 +48,7 @@ export type OptionsData = {
     fontWeight?: string;
     fontShape?: string;
     maxSize: number;
+    mathMLOnly: boolean;
 };
 
 /**
@@ -69,6 +70,7 @@ class Options {
     sizeMultiplier: number;
     maxSize: number;
     _fontMetrics: FontMetrics | void;
+    mathMLOnly: boolean;
 
     /**
      * The base size index.
@@ -87,6 +89,7 @@ class Options {
         this.sizeMultiplier = sizeMultipliers[this.size - 1];
         this.maxSize = data.maxSize;
         this._fontMetrics = undefined;
+        this.mathMLOnly = data.mathMLOnly;
     }
 
     /**
@@ -104,6 +107,7 @@ class Options {
             fontWeight: this.fontWeight,
             fontShape: this.fontShape,
             maxSize: this.maxSize,
+            mathMLOnly: this.mathMLOnly,
         };
 
         for (const key in extension) {
